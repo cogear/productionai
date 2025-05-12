@@ -34,40 +34,30 @@ export default function EnPage() {
       {/* Sticky Header */}
       <header className="sticky top-0 z-50 bg-white backdrop-blur-md shadow-sm border-b border-gray-200">
         <div className="container mx-auto px-4">
-          <div className="flex justify-between items-center py-6">
-            <div className="flex items-center gap-2">
+          <div className="flex justify-between items-center py-2">
+            <div className="flex items-center">
               <Image 
                 src="/Logo.png" 
                 alt="Production AI" 
-                width={280} 
-                height={80} 
-                className="w-auto h-20"
+                width={525} 
+                height={150} 
+                className="w-auto h-36"
               />
             </div>
-            
-            <nav className="hidden md:flex items-center space-x-6">
-              <Link href="#features" className="text-gray-700 hover:text-blue-600 font-medium text-sm transition-colors">
+            <nav className="hidden md:flex items-center space-x-8">
+              <Link href="#features" className="text-gray-700 hover:text-blue-600 font-medium text-lg transition-colors">
                 Features
               </Link>
-              <Link href="/pricing" className="text-gray-700 hover:text-blue-600 font-medium text-sm transition-colors">
+              <Link href="/pricing" className="text-gray-700 hover:text-blue-600 font-medium text-lg transition-colors">
                 Pricing
-              </Link>
-            </nav>
-            
-            <div className="flex items-center gap-3">
-              <Link 
-                href="/login" 
-                className="text-gray-900 hover:text-blue-600 text-sm font-medium transition-colors"
-              >
-                Log In
               </Link>
               <Link 
                 href="/register" 
-                className="bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium px-4 py-2 rounded-lg transition-colors"
+                className="bg-blue-600 hover:bg-blue-700 text-white text-lg font-medium px-5 py-2.5 rounded-lg transition-colors"
               >
                 Get Started
               </Link>
-            </div>
+            </nav>
           </div>
         </div>
       </header>
@@ -561,9 +551,16 @@ export default function EnPage() {
               <div className="relative">
                 <div className="absolute -top-10 -right-10 w-72 h-72 bg-pink-100 rounded-full blur-3xl opacity-60 -z-10"></div>
                 <div className="bg-pink-100 p-3 rounded-xl shadow-xl border border-pink-200">
-                  <div className="h-64 w-full flex items-center justify-center bg-pink-200 rounded-lg">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-pink-500"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg>
-                  </div>
+                  <Image 
+                    src="https://higgsvideo.s3.us-east-1.amazonaws.com/ruby.png"
+                    alt="AI Voice Assistant"
+                    width={1200}
+                    height={800}
+                    quality={100}
+                    loading="eager"
+                    priority
+                    className="rounded-lg object-contain w-full"
+                  />
                   <div className="absolute bottom-10 right-10 bg-pink-600 text-white p-4 rounded-full shadow-lg pulse-animation">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg>
                   </div>
