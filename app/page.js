@@ -52,7 +52,7 @@ export default function EnPage() {
                 Pricing
               </Link>
               <Link 
-                href="/register" 
+                href="https://www.higgshub.pro/en/register?role=contractor" 
                 className="bg-blue-600 hover:bg-blue-700 text-white text-lg font-medium px-5 py-2.5 rounded-lg transition-colors"
               >
                 Get Started
@@ -81,7 +81,7 @@ export default function EnPage() {
               
               <div className="flex flex-col sm:flex-row gap-4 mb-8">
                 <Link 
-                  href="/register" 
+                  href="https://www.higgshub.pro/en/register?role=contractor" 
                   className="bg-white text-blue-600 px-6 py-3 rounded-lg font-medium text-lg shadow-lg flex items-center justify-center hover:bg-gray-100 transition-colors group"
                 >
                   Sign Up Now 
@@ -793,10 +793,10 @@ export default function EnPage() {
             
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <Link 
-                href="/register" 
+                href="https://www.higgshub.pro/en/register?role=contractor" 
                 className="bg-white text-blue-600 px-6 py-3 rounded-lg font-medium text-lg w-full sm:w-auto flex items-center justify-center hover:bg-gray-100 transition-colors shadow-lg"
               >
-                Start Free Trial <ArrowRight className="ml-2 h-5 w-5" />
+                Get Started <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
               <Link 
                 href="/demo" 
