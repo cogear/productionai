@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import Footer from "@/app/shared/Footer";
 import { CheckCircle2, XCircle } from "lucide-react";
 
 export default function PricingPage() {
@@ -300,57 +301,7 @@ export default function PricingPage() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-white py-16">
-        <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
-            <div className="col-span-1 lg:col-span-1">
-              <Image 
-                src="/LogoDark.png" 
-                alt="Production AI" 
-                width={200}
-                height={60}
-                className="mb-6"
-              />
-              <p className="text-gray-400 mb-6 max-w-md">
-                The complete AI-powered platform for production teams to streamline operations, automate communications, and optimize workflow management.
-              </p>
-            </div>
-            
-            <div>
-              <h3 className="text-lg font-semibold mb-4">Product</h3>
-              <ul className="space-y-3">
-                <li><Link href="/#features" className="text-gray-400 hover:text-blue-400 transition-colors">Features</Link></li>
-                <li><Link href="/pricing" className="text-gray-400 hover:text-blue-400 transition-colors">Pricing</Link></li>
-                <li><Link href="/coming-soon" className="text-gray-400 hover:text-blue-400 transition-colors">What's New</Link></li>
-              </ul>
-            </div>
-            
-            <div>
-              <h3 className="text-lg font-semibold mb-4">Resources</h3>
-              <ul className="space-y-3">
-                <li><Link href="/docs" className="text-gray-400 hover:text-blue-400 transition-colors">Documentation</Link></li>
-                <li><Link href="/support" className="text-gray-400 hover:text-blue-400 transition-colors">Support</Link></li>
-              </ul>
-            </div>
-            
-            <div>
-              <h3 className="text-lg font-semibold mb-4">Company</h3>
-              <ul className="space-y-3">
-                <li><Link href="/about" className="text-gray-400 hover:text-blue-400 transition-colors">About Us</Link></li>
-                <li><Link href="/contact" className="text-gray-400 hover:text-blue-400 transition-colors">Contact</Link></li>
-                <li><Link href="/privacy" className="text-gray-400 hover:text-blue-400 transition-colors">Privacy Policy</Link></li>
-                <li><Link href="/terms" className="text-gray-400 hover:text-blue-400 transition-colors">Terms of Service</Link></li>
-              </ul>
-            </div>
-          </div>
-          
-          <div className="mt-12 pt-8 border-t border-gray-800 flex flex-col md:flex-row justify-between items-center">
-            <div className="text-gray-500 text-sm mb-4 md:mb-0">
-              &copy; {new Date().getFullYear()} Production AI Platform. All rights reserved.
-            </div>
-          </div>
-        </div>
-      </footer>
+      <Footer darkMode={true} />
     </div>
   );
 }

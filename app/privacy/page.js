@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import Footer from "@/app/shared/Footer";
 
 export default function PrivacyPage() {
     return (
@@ -99,62 +100,15 @@ export default function PrivacyPage() {
                     <p className="mb-6 text-gray-300">Any changes to our text messaging practices will be updated in this section of our Privacy Policy. We encourage you to review this policy periodically.</p>
 
                     <h2 className="text-2xl font-bold mb-4 text-blue-400 mt-10">Contact Us</h2>
-                    <p className="mb-6 text-gray-300">If you have any questions or concerns about our privacy policy or the handling of your personal information, please contact us at support@higgshub.pro.</p>
+                    <p className="mb-6 text-gray-300">If you have any questions or concerns about our privacy policy or the handling of your personal information, please contact us at <a href="mailto:info@productionai.ai" className="text-blue-400 hover:underline">info@productionai.ai</a>.</p>
                     <p className="text-gray-300">By using our website and services, you acknowledge that you have read and understood this privacy policy.</p>
                 </div>
             </div>
 
             {/* Footer */}
-            <footer className="bg-gray-800 text-white py-16 mt-20 border-t border-gray-700">
-                <div className="container mx-auto px-4">
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
-                        <div className="col-span-1 lg:col-span-1">
-                            <Image 
-                                src="/LogoDark.png" 
-                                alt="Production AI" 
-                                width={200}
-                                height={60}
-                                className="mb-6"
-                            />
-                            <p className="text-gray-400 mb-6 max-w-md">
-                                The complete AI-powered platform for production teams to streamline operations, automate communications, and optimize workflow management.
-                            </p>
-                        </div>
-                        
-                        <div>
-                            <h3 className="text-lg font-semibold mb-4 text-white">Product</h3>
-                            <ul className="space-y-3">
-                                <li><Link href="/#features" className="text-gray-400 hover:text-blue-400 transition-colors">Features</Link></li>
-                                <li><Link href="/pricing" className="text-gray-400 hover:text-blue-400 transition-colors">Pricing</Link></li>
-                            </ul>
-                        </div>
-                        
-                        <div>
-                            <h3 className="text-lg font-semibold mb-4 text-white">Resources</h3>
-                            <ul className="space-y-3">
-                                <li><Link href="/docs" className="text-gray-400 hover:text-blue-400 transition-colors">Documentation</Link></li>
-                                <li><Link href="/support" className="text-gray-400 hover:text-blue-400 transition-colors">Support</Link></li>
-                            </ul>
-                        </div>
-                        
-                        <div>
-                            <h3 className="text-lg font-semibold mb-4 text-white">Company</h3>
-                            <ul className="space-y-3">
-                                <li><Link href="/about" className="text-gray-400 hover:text-blue-400 transition-colors">About Us</Link></li>
-                                <li><Link href="/contact" className="text-gray-400 hover:text-blue-400 transition-colors">Contact</Link></li>
-                                <li><Link href="/privacy" className="text-gray-400 hover:text-blue-400 transition-colors">Privacy Policy</Link></li>
-                                <li><Link href="/terms" className="text-gray-400 hover:text-blue-400 transition-colors">Terms of Service</Link></li>
-                            </ul>
-                        </div>
-                    </div>
-                    
-                    <div className="mt-12 pt-8 border-t border-gray-700 flex flex-col md:flex-row justify-between items-center">
-                        <div className="text-gray-500 text-sm mb-4 md:mb-0">
-                            &copy; {new Date().getFullYear()} Production AI Platform. All rights reserved.
-                        </div>
-                    </div>
-                </div>
-            </footer>
+            <div className="mt-20">
+                <Footer darkMode={true} />
+            </div>
         </div>
     );
 }
