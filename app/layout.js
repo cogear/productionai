@@ -15,14 +15,14 @@ export const metadata = {
   title: "Production AI Platform",
   description: "Streamline your production operations with automated communications, AI assistance, and comprehensive job management in one powerful platform.",
   icons: {
-    icon: '/2Back.png',
+    icon: '/Logocon.png',
   },
 };
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <head>
-        <link rel="icon" href="/2Back.png" />
+        <link rel="icon" href="/Logocon.png" />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
