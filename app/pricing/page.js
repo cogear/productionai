@@ -192,7 +192,7 @@ export default function PricingPage() {
                 </div>
                 <p className="text-gray-400 mb-6">Enterprise-grade solution</p>
                 <Link 
-                  href="/contact" 
+                  href="mailto:info@productionai.ai?subject=Enterprise%20Plan%20Inquiry" 
                   className="block w-full bg-blue-600 hover:bg-blue-700 text-white text-center py-3 rounded-lg font-medium transition-colors"
                 >
                   Contact Sales
