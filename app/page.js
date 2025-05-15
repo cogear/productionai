@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from 'next/navigation';
+import React from 'react';
 import Footer from "@/app/shared/Footer";
 import { 
   ArrowRight, 
@@ -29,6 +30,11 @@ import {
 
 export default function EnPage() {
   const router = useRouter();
+  
+  // Track when critical images are loaded
+  const logImageLoad = (src) => {
+    console.log(`Image loaded: ${src}`);
+  };
 
   return (
     <div className="font-sans overflow-x-hidden">
@@ -43,6 +49,8 @@ export default function EnPage() {
                 width={525} 
                 height={150} 
                 className="w-auto h-36"
+                onLoad={() => logImageLoad('logo')}
+                priority
               />
             </div>
             <nav className="hidden md:flex items-center space-x-8">
@@ -105,6 +113,7 @@ export default function EnPage() {
                   width={600}
                   height={400}
                   className="rounded-lg object-cover w-full"
+                  onLoad={() => logImageLoad('hero')}
                   priority
                 />
                 <div className="absolute -bottom-4 -right-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-4 py-2 rounded-lg shadow-lg text-sm font-medium flex items-center">
@@ -128,7 +137,7 @@ export default function EnPage() {
                     <h3 className="font-bold text-lg mb-1 text-blue-600">Automated Communications</h3>
                     <p className="text-gray-600 text-sm">Customer notifications and crew updates</p>
                   </div>
-                  <div className="relative aspect-[4/3] overflow-hidden">
+                  <div className="relative aspect-[4/3] overflow-hidden image-container">
                     <Image 
                       src="https://higgsvideo.s3.us-east-1.amazonaws.com/email.png?v=refresh"
                       alt="Automated Communications"
@@ -136,6 +145,8 @@ export default function EnPage() {
                       height={600}
                       quality={100}
                       className="object-contain w-full h-full transform hover:scale-105 transition-transform duration-300"
+                      onLoad={() => logImageLoad('email')}
+                      priority
                     />
                   </div>
                 </div>
@@ -147,7 +158,7 @@ export default function EnPage() {
                     <h3 className="font-bold text-lg mb-1 text-purple-600">Messaging Center</h3>
                     <p className="text-gray-600 text-sm">Centralized communication with all project stakeholders</p>
                   </div>
-                  <div className="relative aspect-[4/3] overflow-hidden">
+                  <div className="relative aspect-[4/3] overflow-hidden image-container">
                     <Image 
                       src="https://higgsvideo.s3.us-east-1.amazonaws.com/Contractor%20Communications.png"
                       alt="Messaging Center"
@@ -155,6 +166,8 @@ export default function EnPage() {
                       height={600}
                       quality={100}
                       className="object-contain w-full h-full transform hover:scale-105 transition-transform duration-300"
+                      onLoad={() => logImageLoad('communications')}
+                      priority
                     />
                   </div>
                 </div>
@@ -166,7 +179,7 @@ export default function EnPage() {
                     <h3 className="font-bold text-lg mb-1 text-green-600">AI Task Management</h3>
                     <p className="text-gray-600 text-sm">Intelligent project tracking and analysis</p>
                   </div>
-                  <div className="relative aspect-[4/3] overflow-hidden">
+                  <div className="relative aspect-[4/3] overflow-hidden image-container">
                     <Image 
                       src="https://higgsvideo.s3.us-east-1.amazonaws.com/ManageTasks.png"
                       alt="Task Tracking"
@@ -174,6 +187,8 @@ export default function EnPage() {
                       height={600}
                       quality={100}
                       className="object-contain w-full h-full transform hover:scale-105 transition-transform duration-300"
+                      onLoad={() => logImageLoad('tasks')}
+                      priority
                     />
                   </div>
                 </div>
@@ -185,7 +200,7 @@ export default function EnPage() {
                     <h3 className="font-bold text-lg mb-1 text-orange-600">Job Builder</h3>
                     <p className="text-gray-600 text-sm">Complete job creation and management</p>
                   </div>
-                  <div className="relative aspect-[4/3] overflow-hidden">
+                  <div className="relative aspect-[4/3] overflow-hidden image-container">
                     <Image 
                       src="https://higgsvideo.s3.us-east-1.amazonaws.com/jobbuilder.png"
                       alt="Job Construction"
@@ -193,6 +208,8 @@ export default function EnPage() {
                       height={600}
                       quality={100}
                       className="object-contain w-full h-full transform hover:scale-105 transition-transform duration-300"
+                      onLoad={() => logImageLoad('jobbuilder')}
+                      priority
                     />
                   </div>
                 </div>
@@ -339,9 +356,9 @@ export default function EnPage() {
                     width={1200}
                     height={800}
                     quality={100}
-                    loading="eager"
                     priority
                     className="rounded-lg object-contain w-full"
+                    onLoad={() => logImageLoad('feature-email')}
                   />
                 </div>
                 
@@ -377,9 +394,9 @@ export default function EnPage() {
                     width={1200}
                     height={800}
                     quality={100}
-                    loading="eager"
                     priority
                     className="rounded-lg object-contain w-full"
+                    onLoad={() => logImageLoad('feature-comm')}
                   />
                 </div>
               </div>
@@ -458,6 +475,7 @@ export default function EnPage() {
                     quality={100}
                     priority
                     className="rounded-lg object-contain w-full"
+                    onLoad={() => logImageLoad('feature-tasks')}
                   />
                 </div>
               </div>
@@ -482,6 +500,7 @@ export default function EnPage() {
                     quality={100}
                     priority
                     className="rounded-lg object-contain w-full"
+                    onLoad={() => logImageLoad('feature-jobbuilder')}
                   />
                 </div>
               </div>
@@ -558,9 +577,9 @@ export default function EnPage() {
                     width={1200}
                     height={800}
                     quality={100}
-                    loading="eager"
                     priority
                     className="rounded-lg object-contain w-full"
+                    onLoad={() => logImageLoad('feature-ruby')}
                   />
                   <div className="absolute bottom-10 right-10 bg-pink-600 text-white p-4 rounded-full shadow-lg pulse-animation">
                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z"></path><path d="M19 10v2a7 7 0 0 1-14 0v-2"></path><line x1="12" y1="19" x2="12" y2="23"></line><line x1="8" y1="23" x2="16" y2="23"></line></svg>
@@ -588,6 +607,7 @@ export default function EnPage() {
                     quality={100}
                     priority
                     className="rounded-lg object-contain w-full"
+                    onLoad={() => logImageLoad('feature-photos')}
                   />
                 </div>
               </div>
@@ -664,9 +684,9 @@ export default function EnPage() {
                     width={1200}
                     height={800}
                     quality={100}
-                    loading="eager"
                     priority
                     className="rounded-lg object-contain w-full"
+                    onLoad={() => logImageLoad('feature-details')}
                   />
                 </div>
               </div>
@@ -691,6 +711,7 @@ export default function EnPage() {
                     quality={100}
                     priority
                     className="rounded-lg object-contain w-full"
+                    onLoad={() => logImageLoad('feature-crew')}
                   />
                 </div>
               </div>
@@ -769,6 +790,7 @@ export default function EnPage() {
                     quality={100}
                     priority
                     className="rounded-lg object-contain w-full"
+                    onLoad={() => logImageLoad('feature-files')}
                   />
                 </div>
               </div>
