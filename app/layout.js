@@ -23,6 +23,23 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <head>
         <link rel="icon" href="/Logocon.png" />
+        {/* Preconnect to S3 for faster image loading */}
+        <link rel="preconnect" href="https://higgsvideo.s3.us-east-1.amazonaws.com" />
+        <link rel="dns-prefetch" href="https://higgsvideo.s3.us-east-1.amazonaws.com" />
+        
+        {/* Preload critical images */}
+        <link 
+          rel="preload" 
+          as="image" 
+          href="/Logo.png"
+          type="image/png"
+        />
+        <link 
+          rel="preload" 
+          as="image" 
+          href="/hero.png"
+          type="image/png"
+        />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
