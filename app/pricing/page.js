@@ -54,13 +54,20 @@ export default function PricingPage() {
       {/* Pricing Section */}
       <section className="py-24 bg-gray-50">
         <div className="container mx-auto px-4">
+          {/* Pricing Coming Soon Banner */}
+          <div className="text-center mb-12">
+            <div className="inline-block bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-8 py-3 rounded-full shadow-lg">
+              <span className="text-lg font-semibold">🚀 Pricing Coming Soon</span>
+            </div>
+          </div>
+          
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {/* Solo Pro */}
+            {/* Level One */}
             <div className="bg-white rounded-xl shadow-xl overflow-hidden border border-gray-200 transition-transform hover:scale-105">
               <div className="p-8 border-b border-gray-100 bg-gradient-to-r from-blue-400 to-cyan-500 text-white">
-                <h3 className="font-bold text-2xl mb-4">Solo Pro</h3>
+                <h3 className="font-bold text-2xl mb-4">Level One</h3>
                 <div className="mb-4">
-                  <span className="text-4xl font-bold">$99.99</span>
+                  <span className="text-4xl font-bold">$00.00</span>
                   <span className="text-blue-100 ml-1">/month</span>
                 </div>
                 <p className="text-blue-100 mb-6">Perfect for individual contractors</p>
@@ -91,12 +98,12 @@ export default function PricingPage() {
               </div>
             </div>
 
-            {/* Commander */}
+            {/* Level Two */}
             <div className="bg-white rounded-xl shadow-xl overflow-hidden border border-gray-200 transition-transform hover:scale-105 transform translate-y-[-10px]">
               <div className="p-8 border-b border-gray-100 bg-gradient-to-r from-blue-500 to-indigo-600 text-white">
-                <h3 className="font-bold text-2xl mb-4">Commander</h3>
+                <h3 className="font-bold text-2xl mb-4">Level Two</h3>
                 <div className="mb-4">
-                  <span className="text-4xl font-bold">$149.99</span>
+                  <span className="text-4xl font-bold">$000.00</span>
                   <span className="text-blue-100 ml-1">/month</span>
                 </div>
                 <p className="text-blue-100 mb-6">For growing businesses</p>
@@ -135,12 +142,12 @@ export default function PricingPage() {
               </div>
             </div>
 
-            {/* Contract King */}
+            {/* Level Three */}
             <div className="bg-white rounded-xl shadow-xl overflow-hidden border border-gray-200 transition-transform hover:scale-105">
               <div className="p-8 border-b border-gray-100 bg-gradient-to-r from-purple-500 to-pink-600 text-white">
-                <h3 className="font-bold text-2xl mb-4">Contract King</h3>
+                <h3 className="font-bold text-2xl mb-4">Level Three</h3>
                 <div className="mb-4">
-                  <span className="text-4xl font-bold">$199.99</span>
+                  <span className="text-4xl font-bold">$000.00</span>
                   <span className="text-purple-100 ml-1">/month</span>
                 </div>
                 <p className="text-purple-100 mb-6">For professional contractors</p>
@@ -251,7 +258,7 @@ export default function PricingPage() {
               },
               {
                 q: "How many users can I add to each plan?",
-                a: "Solo Pro supports 1 user, Commander supports up to 3 users, Contract King supports up to 10 users, and Multi-state organizations have custom user limits."
+                a: "Level One supports 1 user, Level Two supports up to 3 users, Level Three supports up to 10 users, and Multi-state organizations have custom user limits."
               },
               {
                 q: "How quickly can I get started?",
