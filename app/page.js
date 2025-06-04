@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useRouter } from 'next/navigation';
 import React from 'react';
 import Footer from "@/app/shared/Footer";
+import { trackSignUpClick, trackDemoRequest } from '@/utils/metaPixelEvents';
 import { 
   ArrowRight, 
   HardHat, 
@@ -92,6 +93,7 @@ export default function EnPage() {
                 <Link 
                   href="https://www.higgshub.pro/en/register?role=contractor" 
                   className="bg-white text-blue-600 px-6 py-3 rounded-lg font-medium text-lg shadow-lg flex items-center justify-center hover:bg-gray-100 transition-colors group"
+                  onClick={() => trackSignUpClick('hero-free-trial')}
                 >
                   Start Free Trial 
                   <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
@@ -99,6 +101,7 @@ export default function EnPage() {
                 <Link 
                   href="/demo" 
                   className="bg-blue-700 text-white px-6 py-3 rounded-lg font-medium text-lg flex items-center justify-center hover:bg-blue-800 transition-colors shadow-lg"
+                  onClick={() => trackDemoRequest()}
                 >
                   Request Demo
                 </Link>

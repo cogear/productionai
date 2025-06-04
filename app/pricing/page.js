@@ -4,8 +4,14 @@ import Link from "next/link";
 import Image from "next/image";
 import Footer from "@/app/shared/Footer";
 import { CheckCircle2, XCircle } from "lucide-react";
+import { trackSignUpClick, trackPricingView } from '@/utils/metaPixelEvents';
+import { useEffect } from 'react';
 
 export default function PricingPage() {
+  useEffect(() => {
+    trackPricingView('all-plans');
+  }, []);
+  
   return (
     <div className="font-sans overflow-x-hidden">
       {/* Sticky Header */}
@@ -67,6 +73,7 @@ export default function PricingPage() {
                 <Link 
                   href="https://www.higgshub.pro/en/register?role=contractor" 
                   className="block w-full bg-white text-blue-500 text-center py-3 rounded-lg font-medium transition-colors hover:bg-gray-100"
+                  onClick={() => trackSignUpClick('pay-as-you-go')}
                 >
                   Get Started
                 </Link>
@@ -101,6 +108,7 @@ export default function PricingPage() {
                 <Link 
                   href="https://www.higgshub.pro/en/register?role=contractor" 
                   className="block w-full bg-white text-blue-600 text-center py-3 rounded-lg font-medium transition-colors hover:bg-gray-100"
+                  onClick={() => trackSignUpClick('starter-package')}
                 >
                   Get Started
                 </Link>
@@ -138,6 +146,7 @@ export default function PricingPage() {
                 <Link 
                   href="https://www.higgshub.pro/en/register?role=contractor" 
                   className="block w-full bg-white text-purple-600 text-center py-3 rounded-lg font-medium transition-colors hover:bg-gray-100"
+                  onClick={() => trackSignUpClick('standard-package')}
                 >
                   Get Started
                 </Link>
@@ -172,6 +181,7 @@ export default function PricingPage() {
                 <Link 
                   href="https://www.higgshub.pro/en/register?role=contractor" 
                   className="block w-full bg-white text-indigo-600 text-center py-3 rounded-lg font-medium transition-colors hover:bg-gray-100"
+                  onClick={() => trackSignUpClick('premium-package')}
                 >
                   Get Started
                 </Link>
