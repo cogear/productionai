@@ -93,7 +93,7 @@ export default function EnPage() {
                   href="https://www.higgshub.pro/en/register?role=contractor" 
                   className="bg-white text-blue-600 px-6 py-3 rounded-lg font-medium text-lg shadow-lg flex items-center justify-center hover:bg-gray-100 transition-colors group"
                 >
-                  Sign Up Now 
+                  Start Free Trial 
                   <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
                 </Link>
                 <Link 

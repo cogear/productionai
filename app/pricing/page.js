@@ -44,9 +44,9 @@ export default function PricingPage() {
       {/* Hero Section */}
       <section className="py-20 bg-gradient-to-br from-blue-600 via-blue-500 to-indigo-600 text-white">
         <div className="container mx-auto px-4 text-center">
-          <h1 className="text-4xl md:text-5xl font-bold mb-6">Choose Your Perfect Plan</h1>
+          <h1 className="text-4xl md:text-5xl font-bold mb-6">Simple Job-Based Pricing</h1>
           <p className="text-xl md:text-2xl text-blue-100 max-w-3xl mx-auto">
-            Flexible pricing options to fit your production management needs
+            Pay only for the jobs you create. No monthly fees, no commitments.
           </p>
         </div>
       </section>
@@ -54,23 +54,16 @@ export default function PricingPage() {
       {/* Pricing Section */}
       <section className="py-24 bg-gray-50">
         <div className="container mx-auto px-4">
-          {/* Pricing Coming Soon Banner */}
-          <div className="text-center mb-12">
-            <div className="inline-block bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-8 py-3 rounded-full shadow-lg">
-              <span className="text-lg font-semibold">🚀 Pricing Coming Soon</span>
-            </div>
-          </div>
-          
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {/* Level One */}
+            {/* Pay As You Go */}
             <div className="bg-white rounded-xl shadow-xl overflow-hidden border border-gray-200 transition-transform hover:scale-105">
               <div className="p-8 border-b border-gray-100 bg-gradient-to-r from-blue-400 to-cyan-500 text-white">
-                <h3 className="font-bold text-2xl mb-4">Level One</h3>
+                <h3 className="font-bold text-2xl mb-4">Pay As You Go</h3>
                 <div className="mb-4">
-                  <span className="text-4xl font-bold">$00.00</span>
-                  <span className="text-blue-100 ml-1">/month</span>
+                  <span className="text-4xl font-bold">$89</span>
+                  <span className="text-blue-100 ml-1">/job</span>
                 </div>
-                <p className="text-blue-100 mb-6">Perfect for individual contractors</p>
+                <p className="text-blue-100 mb-6">No commitments needed</p>
                 <Link 
                   href="https://www.higgshub.pro/en/register?role=contractor" 
                   className="block w-full bg-white text-blue-500 text-center py-3 rounded-lg font-medium transition-colors hover:bg-gray-100"
@@ -81,13 +74,11 @@ export default function PricingPage() {
               <div className="p-8">
                 <ul className="space-y-4">
                   {[
-                    "AI order creation",
-                    "Order fulfillment",
-                    "Crew fulfillment",
-                    "Weather forecasting",
-                    "Permit inspection scheduling",
-                    "Customer notifications: Text or email",
-                    "Schedule repairs on jobs installed"
+                    "No upfront commitment",
+                    "Pay only for jobs you create",
+                    "Full access to all features",
+                    "Invoiced weekly",
+                    "Residential only"
                   ].map((feature, index) => (
                     <li key={index} className="flex items-start">
                       <CheckCircle2 className="h-5 w-5 text-green-500 mr-3 flex-shrink-0 mt-0.5" />
@@ -98,18 +89,15 @@ export default function PricingPage() {
               </div>
             </div>
 
-            {/* Level Two */}
-            <div className="bg-white rounded-xl shadow-xl overflow-hidden border border-gray-200 transition-transform hover:scale-105 transform translate-y-[-10px]">
+            {/* Starter Package */}
+            <div className="bg-white rounded-xl shadow-xl overflow-hidden border border-gray-200 transition-transform hover:scale-105">
               <div className="p-8 border-b border-gray-100 bg-gradient-to-r from-blue-500 to-indigo-600 text-white">
-                <h3 className="font-bold text-2xl mb-4">Level Two</h3>
+                <h3 className="font-bold text-2xl mb-4">Starter Package</h3>
                 <div className="mb-4">
-                  <span className="text-4xl font-bold">$000.00</span>
-                  <span className="text-blue-100 ml-1">/month</span>
+                  <span className="text-4xl font-bold">$395</span>
+                  <span className="text-blue-100 ml-1 block text-sm">5 jobs @ $79/job</span>
                 </div>
-                <p className="text-blue-100 mb-6">For growing businesses</p>
-                <div className="absolute top-4 right-4 bg-yellow-400 text-gray-900 px-3 py-1 rounded-full text-xs font-bold">
-                  POPULAR
-                </div>
+                <p className="text-blue-100 mb-6">Save $50.00</p>
                 <Link 
                   href="https://www.higgshub.pro/en/register?role=contractor" 
                   className="block w-full bg-white text-blue-600 text-center py-3 rounded-lg font-medium transition-colors hover:bg-gray-100"
@@ -120,18 +108,11 @@ export default function PricingPage() {
               <div className="p-8">
                 <ul className="space-y-4">
                   {[
-                    "AI Takeoffs",
-                    "Order fulfillment",
-                    "Crew fulfillment",
-                    "Photo taking",
-                    "Permit inspection scheduling",
-                    "Automated Customer notifications: Text & email",
-                    "Schedule repairs on jobs installed",
-                    "Weather forecasting",
-                    "AI job costing",
-                    "Automated Crew notifications via Text",
-                    "Crew Invoicing inside the platform",
-                    "Basic reporting"
+                    "5 job credits",
+                    "Credits never expire",
+                    "Full access to all features",
+                    "Priority support",
+                    "Residential only"
                   ].map((feature, index) => (
                     <li key={index} className="flex items-start">
                       <CheckCircle2 className="h-5 w-5 text-green-500 mr-3 flex-shrink-0 mt-0.5" />
@@ -142,15 +123,18 @@ export default function PricingPage() {
               </div>
             </div>
 
-            {/* Level Three */}
-            <div className="bg-white rounded-xl shadow-xl overflow-hidden border border-gray-200 transition-transform hover:scale-105">
-              <div className="p-8 border-b border-gray-100 bg-gradient-to-r from-purple-500 to-pink-600 text-white">
-                <h3 className="font-bold text-2xl mb-4">Level Three</h3>
+            {/* Standard Package */}
+            <div className="bg-white rounded-xl shadow-xl overflow-hidden border border-gray-200 transition-transform hover:scale-105 transform translate-y-[-10px]">
+              <div className="p-8 border-b border-gray-100 bg-gradient-to-r from-purple-500 to-pink-600 text-white relative">
+                <h3 className="font-bold text-2xl mb-4">Standard Package</h3>
                 <div className="mb-4">
-                  <span className="text-4xl font-bold">$000.00</span>
-                  <span className="text-purple-100 ml-1">/month</span>
+                  <span className="text-4xl font-bold">$690</span>
+                  <span className="text-purple-100 ml-1 block text-sm">10 jobs @ $69/job</span>
                 </div>
-                <p className="text-purple-100 mb-6">For professional contractors</p>
+                <p className="text-purple-100 mb-6">Save $200.00</p>
+                <div className="absolute top-4 right-4 bg-yellow-400 text-gray-900 px-3 py-1 rounded-full text-xs font-bold">
+                  POPULAR
+                </div>
                 <Link 
                   href="https://www.higgshub.pro/en/register?role=contractor" 
                   className="block w-full bg-white text-purple-600 text-center py-3 rounded-lg font-medium transition-colors hover:bg-gray-100"
@@ -161,24 +145,11 @@ export default function PricingPage() {
               <div className="p-8">
                 <ul className="space-y-4">
                   {[
-                    "AI Takeoffs",
-                    "Order fulfillment",
-                    "Crew fulfillment",
-                    "Photo taking",
-                    "Permit inspection scheduling",
-                    "Customer notifications: Text & email",
-                    "Customer success videos",
-                    "Weather forecasting",
-                    "Schedule repairs on jobs installed",
-                    "AI job costing",
-                    "Crew notifications via Text & email",
-                    "Crew Invoicing inside the platform",
-                    "Multilingual Support",
-                    "Voice Assistant",
-                    "Google Calendar Sync",
-                    "Advance reporting",
-                    "Sub-contractor insurance renewal notifications",
-                    "CRM two-way connection"
+                    "10 job credits",
+                    "Credits never expire",
+                    "Full access to all features",
+                    "Priority support",
+                    "Residential only"
                   ].map((feature, index) => (
                     <li key={index} className="flex items-start">
                       <CheckCircle2 className="h-5 w-5 text-green-500 mr-3 flex-shrink-0 mt-0.5" />
@@ -189,49 +160,34 @@ export default function PricingPage() {
               </div>
             </div>
 
-            {/* Multi-state organization */}
-            <div className="bg-white rounded-xl shadow-xl overflow-hidden border border-gray-200 transition-transform hover:scale-105 bg-gradient-to-br from-gray-900 to-gray-800">
-              <div className="p-8 border-b border-gray-700">
-                <h3 className="font-bold text-2xl text-white mb-4">Multi-state organization</h3>
+            {/* Premium Package */}
+            <div className="bg-white rounded-xl shadow-xl overflow-hidden border border-gray-200 transition-transform hover:scale-105">
+              <div className="p-8 border-b border-gray-100 bg-gradient-to-r from-indigo-600 to-purple-700 text-white">
+                <h3 className="font-bold text-2xl mb-4">Premium Package</h3>
                 <div className="mb-4">
-                  <span className="text-4xl font-bold text-white">Contact</span>
-                  <span className="text-gray-400 block">Sales Team</span>
+                  <span className="text-4xl font-bold">$1,180</span>
+                  <span className="text-indigo-100 ml-1 block text-sm">20 jobs @ $59/job</span>
                 </div>
-                <p className="text-gray-400 mb-6">Enterprise-grade solution</p>
+                <p className="text-indigo-100 mb-6">Save $600.00</p>
                 <Link 
-                  href="mailto:info@productionai.ai?subject=Enterprise%20Plan%20Inquiry" 
-                  className="block w-full bg-blue-600 hover:bg-blue-700 text-white text-center py-3 rounded-lg font-medium transition-colors"
+                  href="https://www.higgshub.pro/en/register?role=contractor" 
+                  className="block w-full bg-white text-indigo-600 text-center py-3 rounded-lg font-medium transition-colors hover:bg-gray-100"
                 >
-                  Contact Sales
+                  Get Started
                 </Link>
               </div>
               <div className="p-8">
                 <ul className="space-y-4">
                   {[
-                    "AI Takeoffs",
-                    "Order fulfillment",
-                    "Crew fulfillment",
-                    "Photo taking",
-                    "Permit inspection scheduling",
-                    "Customer notifications: Text & email",
-                    "Customer success videos",
-                    "Weather forecasting",
-                    "Schedule repairs on jobs installed",
-                    "AI job costing",
-                    "Crew notifications via Text & email",
-                    "Crew Invoicing inside the platform",
-                    "Multilingual Support",
-                    "Voice Assistant",
-                    "Google Calendar Sync",
-                    "Advance reporting",
-                    "Sub-contractor insurance renewal notifications",
-                    "CRM two-way connection",
-                    "Custom integration capabilities",
-                    "Dedicated account manager"
+                    "20 job credits",
+                    "Credits never expire",
+                    "Full access to all features",
+                    "Priority support",
+                    "Residential only"
                   ].map((feature, index) => (
                     <li key={index} className="flex items-start">
-                      <CheckCircle2 className="h-5 w-5 text-blue-500 mr-3 flex-shrink-0 mt-0.5" />
-                      <span className="text-gray-300">{feature}</span>
+                      <CheckCircle2 className="h-5 w-5 text-green-500 mr-3 flex-shrink-0 mt-0.5" />
+                      <span className="text-gray-700">{feature}</span>
                     </li>
                   ))}
                 </ul>
@@ -241,36 +197,63 @@ export default function PricingPage() {
         </div>
       </section>
 
+      {/* Add-ons Section */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4">
+          <h2 className="text-3xl font-bold text-center mb-12">Enhance Your Jobs with Add-ons</h2>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            {/* One-Click Report */}
+            <div className="bg-gray-50 rounded-xl p-8 border border-gray-200 hover:shadow-lg transition-shadow">
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-xl font-bold">One-Click Report</h3>
+                <span className="text-2xl font-bold text-blue-600">$20</span>
+              </div>
+              <p className="text-gray-600">Generate comprehensive reports with a single click. Perfect for client presentations and record keeping.</p>
+            </div>
+            
+            {/* Aerial Measurement */}
+            <div className="bg-gray-50 rounded-xl p-8 border border-gray-200 hover:shadow-lg transition-shadow">
+              <div className="flex items-center justify-between mb-4">
+                <h3 className="text-xl font-bold">Aerial Measurement</h3>
+                <span className="text-2xl font-bold text-blue-600">$40</span>
+              </div>
+              <p className="text-gray-600">Get accurate roof measurements using advanced aerial technology. Save time and improve accuracy.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* FAQ Section */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold text-center mb-12">Frequently Asked Questions</h2>
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
             {[
               {
-                q: "Can I upgrade or downgrade my plan later?",
-                a: "Yes, you can upgrade or downgrade your plan at any time. Changes will be reflected in your next billing cycle."
+                q: "How does job-based pricing work?",
+                a: "You only pay for the jobs you create. With Pay As You Go, you're charged $89 per job weekly. With packages, you purchase job credits upfront at discounted rates."
               },
               {
-                q: "Is there a discount for annual billing?",
-                a: "Yes, we offer a 10% discount when you choose annual billing for any of our plans."
+                q: "Do job credits expire?",
+                a: "No, job credits never expire! Purchase a package and use your credits whenever you need them."
               },
               {
-                q: "How many users can I add to each plan?",
-                a: "Level One supports 1 user, Level Two supports up to 3 users, Level Three supports up to 10 users, and Multi-state organizations have custom user limits."
+                q: "What's included in 'full access to all features'?",
+                a: "Every pricing tier includes all platform features - AI takeoffs, order fulfillment, crew management, weather forecasting, permit scheduling, notifications, and more."
               },
               {
-                q: "How quickly can I get started?",
-                a: "You can get started immediately after signing up. Our onboarding process is streamlined to get you up and running within minutes."
+                q: "Can I mix Pay As You Go with packages?",
+                a: "Yes! You can start with Pay As You Go and purchase packages whenever you want to save money on multiple jobs."
               },
               {
-                q: "Can I get a demo of the platform?",
-                a: "Absolutely! You can schedule a personalized demo with our team to see how Production AI can help your specific business."
+                q: "Are add-ons available for all pricing tiers?",
+                a: "Yes, both One-Click Reports ($20) and Aerial Measurements ($40) can be added to any job, regardless of your pricing plan."
               },
               {
                 q: "What payment methods do you accept?",
-                a: "We accept all major credit cards, PayPal, and bank transfers for annual plans."
+                a: "We accept all major credit cards and invoice weekly for Pay As You Go. Package purchases are charged immediately."
               }
             ].map((faq, index) => (
               <div key={index} className="bg-gray-50 p-6 rounded-lg">
@@ -285,9 +268,9 @@ export default function PricingPage() {
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-br from-blue-600 to-indigo-700 text-white">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold mb-6">Ready to Transform Your Production Management?</h2>
+          <h2 className="text-3xl font-bold mb-6">Start Creating Jobs Today</h2>
           <p className="text-xl mb-10 text-blue-100 max-w-3xl mx-auto">
-            Join thousands of contractors who are saving time and reducing costs with our platform.
+            No monthly fees, no commitments. Pay only for the jobs you create.
           </p>
           
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
