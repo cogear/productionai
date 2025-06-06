@@ -1,9 +1,9 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, Suspense } from 'react';
 import { usePathname, useSearchParams } from 'next/navigation';
 
-export default function MetaPixel({ pixelId }) {
+function MetaPixelInner({ pixelId }) {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
@@ -55,5 +55,13 @@ export default function MetaPixel({ pixelId }) {
         />
       </noscript>
     </>
+  );
+}
+
+export default function MetaPixel({ pixelId }) {
+  return (
+    <Suspense fallback={null}>
+      <MetaPixelInner pixelId={pixelId} />
+    </Suspense>
   );
 }
