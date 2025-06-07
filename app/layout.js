@@ -45,7 +45,7 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <MetaPixel pixelId={process.env.NEXT_PUBLIC_META_PIXEL_ID} />
+        <MetaPixel pixelId="669673179306678" />
         {children}
       </body>
     </html>
