@@ -3,9 +3,9 @@
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from 'next/navigation';
-import React from 'react';
+import React, { useState } from 'react';
 import Footer from "@/app/shared/Footer";
-import { trackSignUpClick, trackDemoRequest } from '@/utils/metaPixelEvents';
+import { trackSignUpClick, trackDemoRequest, trackLead } from '@/utils/metaPixelEvents';
 import { 
   ArrowRight, 
   HardHat, 
@@ -31,6 +31,66 @@ import {
 
 export default function EnPage() {
   const router = useRouter();
+  
+  // Form state
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    company: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState(null);
+  
+  // Handle form input changes
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+  
+  // Handle form submission to Zapier
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setSubmitStatus(null);
+    
+    try {
+      const response = await fetch('/api/submit-lead', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData)
+      });
+      
+      if (response.ok) {
+        setSubmitStatus('success');
+        setFormData({ name: '', email: '', phone: '', company: '' });
+        
+        // Track lead event for Meta Pixel
+        trackLead(0, 'USD'); // You can adjust the value if needed
+        
+        // Also track as a custom event with more details
+        if (typeof window !== 'undefined' && window.fbq) {
+          window.fbq('trackCustom', 'LeadFormSubmission', {
+            lead_type: 'Production AI Website Form',
+            form_location: 'Homepage',
+            company: formData.company
+          });
+        }
+      } else {
+        setSubmitStatus('error');
+      }
+    } catch (error) {
+      console.error('Form submission error:', error);
+      setSubmitStatus('error');
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
   
   // Track when critical images are loaded
   const logImageLoad = (src) => {
@@ -137,29 +197,6 @@ export default function EnPage() {
               <div className="carousel-slide min-w-full sm:min-w-[80%] md:min-w-[50%] lg:min-w-[33.333%] p-3">
                 <div className="bg-white rounded-lg overflow-hidden shadow-md h-full">
                   <div className="p-4 border-b border-gray-100">
-                    <h3 className="font-bold text-lg mb-1 text-blue-600">Automated Communications</h3>
-                    <p className="text-gray-600 text-sm">Customer notifications and crew updates</p>
-                  </div>
-                  <div className="relative aspect-[4/3] overflow-hidden image-container">
-                    <Image 
-                      src="https://higgsvideo.s3.us-east-1.amazonaws.com/email.png?v=refresh"
-                      alt="Automated Communications"
-                      width={800}
-                      height={600}
-                      quality={85}
-                      className="object-contain w-full h-full transform hover:scale-105 transition-transform duration-300"
-                      onLoad={() => logImageLoad('email')}
-                      loading="lazy"
-                      placeholder="blur"
-                      blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAf/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWEREiMxUf/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
-                    />
-                  </div>
-                </div>
-              </div>
-              
-              <div className="carousel-slide min-w-full sm:min-w-[80%] md:min-w-[50%] lg:min-w-[33.333%] p-3">
-                <div className="bg-white rounded-lg overflow-hidden shadow-md h-full">
-                  <div className="p-4 border-b border-gray-100">
                     <h3 className="font-bold text-lg mb-1 text-purple-600">Messaging Center</h3>
                     <p className="text-gray-600 text-sm">Centralized communication with all project stakeholders</p>
                   </div>
@@ -233,9 +270,16 @@ export default function EnPage() {
                     <p className="text-gray-600 text-sm">Smart organization of all job-related images</p>
                   </div>
                   <div className="relative aspect-[4/3] overflow-hidden">
-                    <div className="flex items-center justify-center h-full bg-pink-200">
-                      <Upload className="h-16 w-16 text-pink-500" />
-                    </div>
+                    <Image 
+                      src="https://higgsvideo.s3.us-east-1.amazonaws.com/jobphotos.png"
+                      alt="Photo Management"
+                      fill
+                      className="object-cover"
+                      onLoad={() => logImageLoad('photomanagement')}
+                      loading="lazy"
+                      placeholder="blur"
+                      blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAf/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWEREiMxUf/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
+                    />
                   </div>
                 </div>
               </div>
@@ -247,9 +291,16 @@ export default function EnPage() {
                     <p className="text-gray-600 text-sm">Professional forms and agreements</p>
                   </div>
                   <div className="relative aspect-[4/3] overflow-hidden">
-                    <div className="flex items-center justify-center h-full bg-blue-200">
-                      <ClipboardCheck className="h-16 w-16 text-blue-500" />
-                    </div>
+                    <Image 
+                      src="https://higgsvideo.s3.us-east-1.amazonaws.com/details.png"
+                      alt="Document Generation"
+                      fill
+                      className="object-cover"
+                      onLoad={() => logImageLoad('documentgeneration')}
+                      loading="lazy"
+                      placeholder="blur"
+                      blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAf/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWEREiMxUf/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
+                    />
                   </div>
                 </div>
               </div>
@@ -261,9 +312,16 @@ export default function EnPage() {
                     <p className="text-gray-600 text-sm">Team assignment and schedule management</p>
                   </div>
                   <div className="relative aspect-[4/3] overflow-hidden">
-                    <div className="flex items-center justify-center h-full bg-purple-200">
-                      <Users className="h-16 w-16 text-purple-500" />
-                    </div>
+                    <Image 
+                      src="https://higgsvideo.s3.us-east-1.amazonaws.com/crewassignment.png"
+                      alt="Team Coordination"
+                      fill
+                      className="object-cover"
+                      onLoad={() => logImageLoad('teamcoordination')}
+                      loading="lazy"
+                      placeholder="blur"
+                      blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAf/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWEREiMxUf/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
+                    />
                   </div>
                 </div>
               </div>
@@ -275,9 +333,16 @@ export default function EnPage() {
                     <p className="text-gray-600 text-sm">Centralized storage for all job documents</p>
                   </div>
                   <div className="relative aspect-[4/3] overflow-hidden">
-                    <div className="flex items-center justify-center h-full bg-green-200">
-                      <FileSpreadsheet className="h-16 w-16 text-green-500" />
-                    </div>
+                    <Image 
+                      src="https://higgsvideo.s3.us-east-1.amazonaws.com/files.png"
+                      alt="File Management"
+                      fill
+                      className="object-cover"
+                      onLoad={() => logImageLoad('filemanagement')}
+                      loading="lazy"
+                      placeholder="blur"
+                      blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAf/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWEREiMxUf/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
+                    />
                   </div>
                 </div>
               </div>
@@ -286,27 +351,22 @@ export default function EnPage() {
               <div className="carousel-slide min-w-full sm:min-w-[80%] md:min-w-[50%] lg:min-w-[33.333%] p-3">
                 <div className="bg-white rounded-lg overflow-hidden shadow-md h-full">
                   <div className="p-4 border-b border-gray-100">
-                    <h3 className="font-bold text-lg mb-1 text-orange-600">Automated Communications</h3>
-                    <p className="text-gray-600 text-sm">Customer notifications and crew updates</p>
-                  </div>
-                  <div className="relative aspect-[4/3] overflow-hidden">
-                    <div className="flex items-center justify-center h-full bg-orange-200">
-                      <MessageSquare className="h-16 w-16 text-orange-500" />
-                    </div>
-                  </div>
-                </div>
-              </div>
-              
-              <div className="carousel-slide min-w-full sm:min-w-[80%] md:min-w-[50%] lg:min-w-[33.333%] p-3">
-                <div className="bg-white rounded-lg overflow-hidden shadow-md h-full">
-                  <div className="p-4 border-b border-gray-100">
-                    <h3 className="font-bold text-lg mb-1 text-pink-600">Messaging Center</h3>
+                    <h3 className="font-bold text-lg mb-1 text-purple-600">Messaging Center</h3>
                     <p className="text-gray-600 text-sm">Centralized communication with all project stakeholders</p>
                   </div>
-                  <div className="relative aspect-[4/3] overflow-hidden">
-                    <div className="flex items-center justify-center h-full bg-pink-200">
-                      <FileText className="h-16 w-16 text-pink-500" />
-                    </div>
+                  <div className="relative aspect-[4/3] overflow-hidden image-container">
+                    <Image 
+                      src="https://higgsvideo.s3.us-east-1.amazonaws.com/Contractor%20Communications.png"
+                      alt="Messaging Center"
+                      width={800}
+                      height={600}
+                      quality={85}
+                      className="object-contain w-full h-full transform hover:scale-105 transition-transform duration-300"
+                      onLoad={() => logImageLoad('communications-duplicate')}
+                      loading="lazy"
+                      placeholder="blur"
+                      blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAf/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWEREiMxUf/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACETDRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
+                    />
                   </div>
                 </div>
               </div>
@@ -324,77 +384,160 @@ export default function EnPage() {
         </div>
       </section>
 
-      {/* Feature Sections - Staggered */}
-      
-      {/* 1. Automated Customer Communications */}
-      <section id="features" className="py-24 bg-white">
+      {/* Lead Collection Form */}
+      <section className="py-12 bg-gradient-to-br from-blue-50 to-indigo-50">
         <div className="container mx-auto px-4">
-          <div className="flex flex-col lg:flex-row items-center gap-16">
-            <div className="lg:w-1/2 order-2 lg:order-1">
-              <div className="inline-block bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm font-medium mb-4">
-                STREAMLINED COMMUNICATION
-              </div>
-              <h2 className="text-3xl font-bold mb-6 text-blue-600">Automated Customer and Team Communications</h2>
-              <p className="text-gray-600 text-lg mb-6">
-                Send automated notifications to keep everyone informed throughout the project lifecycle. Welcome messages, delivery alerts, installation notifications, crew updates, and job reminders are delivered seamlessly.
-              </p>
-              
-              <ul className="space-y-4 mb-8">
-                {[
-                  "Automated welcome emails for new customers",
-                  "Real-time delivery notifications with tracking details",
-                  "Pre-installation reminders and instructions",
-                  "Custom crew notifications for assignments and schedule changes",
-                  "Automatically translated messages based on recipient preference"
-                ].map((item, index) => (
-                  <li key={index} className="flex items-start">
-                    <div className="bg-green-100 text-green-600 rounded-full p-1 mr-3 mt-1">
-                      <CheckCircle2 className="h-4 w-4" />
+          <div className="max-w-6xl mx-auto">
+            <div className="bg-white rounded-xl shadow-lg p-6 md:p-8">
+              <div className="grid lg:grid-cols-2 gap-8 items-center">
+                {/* Call to Action Side */}
+                <div className="order-2 lg:order-1">
+                  <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-3">
+                    Ready to Transform Your Production Process?
+                  </h2>
+                  <p className="text-lg text-gray-600 mb-6">
+                    Discover how Production AI can streamline your operations and boost productivity.
+                  </p>
+                  
+                  <div className="space-y-4 mb-6">
+                    <div className="flex items-center gap-3">
+                      <CheckCircle2 className="h-5 w-5 text-green-500 flex-shrink-0" />
+                      <span className="text-gray-700">Automated communications & notifications</span>
                     </div>
-                    <span className="text-gray-700">{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            
-            <div className="lg:w-1/2 order-1 lg:order-2">
-              <div className="relative">
-                <div className="absolute -top-10 -right-10 w-72 h-72 bg-blue-200 rounded-full blur-3xl opacity-70 -z-10"></div>
-                <div className="bg-blue-100 p-3 rounded-xl shadow-xl border border-blue-200">
-                  <Image 
-                    src="https://higgsvideo.s3.us-east-1.amazonaws.com/email.png?v=refresh"
-                    alt="Automated Communications Dashboard"
-                    width={1200}
-                    height={800}
-                    quality={85}
-                    loading="lazy"
-                    className="rounded-lg object-contain w-full"
-                    onLoad={() => logImageLoad('feature-email')}
-                    placeholder="blur"
-                    blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAf/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWEREiMxUf/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
-                  />
-                </div>
-                
-                {/* Floating elements */}
-                <div className="absolute -bottom-6 -left-6 bg-white p-3 rounded-lg shadow-xl border border-blue-100 z-20 max-w-[220px] hidden md:block">
-                  <div className="flex items-start gap-2">
-                    <div className="bg-blue-100 text-blue-600 rounded-full p-1 mt-0.5">
-                      <MessageSquare className="h-4 w-4" />
+                    <div className="flex items-center gap-3">
+                      <CheckCircle2 className="h-5 w-5 text-green-500 flex-shrink-0" />
+                      <span className="text-gray-700">AI-powered task management</span>
                     </div>
-                    <div>
-                      <p className="text-sm font-medium text-gray-800">Message sent successfully</p>
-                      <p className="text-xs text-gray-500">3 team members notified</p>
+                    <div className="flex items-center gap-3">
+                      <CheckCircle2 className="h-5 w-5 text-green-500 flex-shrink-0" />
+                      <span className="text-gray-700">Complete job & team coordination</span>
                     </div>
                   </div>
+                  
+                  <div className="flex flex-wrap gap-4 text-sm">
+                    <span className="text-gray-600">✓ No Setup Fees</span>
+                    <span className="text-gray-600">✓ 24/7 Support</span>
+                    <span className="text-gray-600">✓ Cancel Anytime</span>
+                  </div>
+                </div>
+                
+                {/* Form Side */}
+                <div className="order-1 lg:order-2">
+                  <form className="space-y-4" onSubmit={handleFormSubmit}>
+                    <div className="grid sm:grid-cols-2 gap-4">
+                      <div>
+                        <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
+                          Full Name *
+                        </label>
+                        <input
+                          type="text"
+                          id="name"
+                          name="name"
+                          value={formData.name}
+                          onChange={handleInputChange}
+                          required
+                          className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors text-sm text-gray-900 placeholder-gray-400"
+                          placeholder="John Doe"
+                        />
+                      </div>
+                      
+                      <div>
+                        <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
+                          Email Address *
+                        </label>
+                        <input
+                          type="email"
+                          id="email"
+                          name="email"
+                          value={formData.email}
+                          onChange={handleInputChange}
+                          required
+                          className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors text-sm text-gray-900 placeholder-gray-400"
+                          placeholder="john@company.com"
+                        />
+                      </div>
+                      
+                      <div>
+                        <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
+                          Phone Number *
+                        </label>
+                        <input
+                          type="tel"
+                          id="phone"
+                          name="phone"
+                          value={formData.phone}
+                          onChange={handleInputChange}
+                          required
+                          className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors text-sm text-gray-900 placeholder-gray-400"
+                          placeholder="(555) 123-4567"
+                        />
+                      </div>
+                      
+                      <div>
+                        <label htmlFor="company" className="block text-sm font-medium text-gray-700 mb-1">
+                          Company Name *
+                        </label>
+                        <input
+                          type="text"
+                          id="company"
+                          name="company"
+                          value={formData.company}
+                          onChange={handleInputChange}
+                          required
+                          className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors text-sm text-gray-900 placeholder-gray-400"
+                          placeholder="ABC Productions Inc."
+                        />
+                      </div>
+                    </div>
+                    
+                    {submitStatus === 'success' && (
+                      <div className="p-3 bg-green-100 border border-green-300 rounded-lg text-green-700 text-sm">
+                        Thank you! We'll be in touch within 24 hours.
+                      </div>
+                    )}
+                    
+                    {submitStatus === 'error' && (
+                      <div className="p-3 bg-red-100 border border-red-300 rounded-lg text-red-700 text-sm">
+                        Something went wrong. Please try again or contact us directly.
+                      </div>
+                    )}
+                    
+                    <button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className={`w-full ${isSubmitting ? 'bg-gray-400 cursor-not-allowed' : 'bg-blue-600 hover:bg-blue-700'} text-white font-medium py-3 px-6 rounded-lg transition-colors flex items-center justify-center gap-2 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 transition-all`}
+                    >
+                      {isSubmitting ? (
+                        <>
+                          <svg className="animate-spin h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                            <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                          </svg>
+                          Sending...
+                        </>
+                      ) : (
+                        <>
+                          Get More Information
+                          <ArrowRight className="h-4 w-4" />
+                        </>
+                      )}
+                    </button>
+                    
+                    <p className="text-xs text-gray-500 text-center">
+                      By submitting, you agree to our terms and privacy policy.
+                    </p>
+                  </form>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </section>
+
+      {/* Feature Sections - Staggered */}
       
-      {/* 2. Job Email and Text */}
-      <section className="py-24 bg-gray-50 bg-gradient-to-b from-white to-gray-50">
+      {/* 1. Job Email and Text */}
+      <section id="features" className="py-24 bg-gray-50 bg-gradient-to-b from-white to-gray-50">
         <div className="container mx-auto px-4">
           <div className="flex flex-col lg:flex-row items-center gap-16">
             <div className="lg:w-1/2">
@@ -447,7 +590,7 @@ export default function EnPage() {
         </div>
       </section>
       
-      {/* 3. Job Task Tracking */}
+      {/* 2. Job Task Tracking */}
       <section className="py-24 bg-white">
         <div className="container mx-auto px-4">
           <div className="flex flex-col lg:flex-row items-center gap-16">
@@ -501,7 +644,7 @@ export default function EnPage() {
         </div>
       </section>
       
-      {/* 4. Job Construction */}
+      {/* 3. Job Construction */}
       <section className="py-24 bg-gray-50 bg-gradient-to-b from-white to-gray-50">
         <div className="container mx-auto px-4">
           <div className="flex flex-col lg:flex-row items-center gap-16">
@@ -555,7 +698,7 @@ export default function EnPage() {
         </div>
       </section>
       
-      {/* 5. AI Voice Interface */}
+      {/* 4. AI Voice Interface */}
       <section className="py-24 bg-white">
         <div className="container mx-auto px-4">
           <div className="flex flex-col lg:flex-row items-center gap-16">
@@ -612,7 +755,7 @@ export default function EnPage() {
         </div>
       </section>
       
-      {/* 6. Job Photo Organization */}
+      {/* 5. Job Photo Organization */}
       <section className="py-24 bg-gray-50 bg-gradient-to-b from-white to-gray-50">
         <div className="container mx-auto px-4">
           <div className="flex flex-col lg:flex-row items-center gap-16">
@@ -666,7 +809,7 @@ export default function EnPage() {
         </div>
       </section>
 
-      {/* 7. Contract and Form Generation */}
+      {/* 6. Contract and Form Generation */}
       <section className="py-24 bg-white">
         <div className="container mx-auto px-4">
           <div className="flex flex-col lg:flex-row items-center gap-16">
@@ -720,7 +863,7 @@ export default function EnPage() {
         </div>
       </section>
       
-      {/* 8. Team Coordination */}
+      {/* 7. Team Coordination */}
       <section className="py-24 bg-gray-50 bg-gradient-to-b from-white to-gray-50">
         <div className="container mx-auto px-4">
           <div className="flex flex-col lg:flex-row items-center gap-16">
@@ -774,7 +917,7 @@ export default function EnPage() {
         </div>
       </section>
       
-      {/* 9. File Management */}
+      {/* 8. File Management */}
       <section className="py-24 bg-white">
         <div className="container mx-auto px-4">
           <div className="flex flex-col lg:flex-row items-center gap-16">
@@ -864,7 +1007,7 @@ export default function EnPage() {
       {/* Footer */}
       <Footer darkMode={false} />
 
-      <style jsx global>{`
+      <style jsx={true} global={true}>{`
         .animate-fade-in {
           animation: fadeIn 0.6s ease-in-out;
         }
