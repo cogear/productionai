@@ -8,15 +8,17 @@ import { useEffect } from 'react';
 
 export default function DemoPage() {
   useEffect(() => {
-    // Load Calendly widget script
     const script = document.createElement('script');
-    script.src = 'https://assets.calendly.com/assets/external/widget.js';
-    script.async = true;
+    script.src = 'https://api.leadconnectorhq.com/js/form_embed.js';
+    script.type = 'text/javascript';
     document.body.appendChild(script);
 
     return () => {
-      // Clean up script when component unmounts
-      document.body.removeChild(script);
+      // Find the script and remove it
+      const scriptElement = document.querySelector('script[src="https://api.leadconnectorhq.com/js/form_embed.js"]');
+      if (scriptElement && document.body.contains(scriptElement)) {
+        document.body.removeChild(scriptElement);
+      }
     };
   }, []);
 
@@ -70,9 +72,12 @@ export default function DemoPage() {
       <section className="py-12 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="max-w-5xl mx-auto">
-            {/* Calendly inline widget begin */}
-            <div className="calendly-inline-widget" data-url="https://calendly.com/nathan-higgs/new-meeting-1" style={{minWidth: '320px', height: '700px'}}></div>
-            {/* Calendly inline widget end */}
+            <iframe 
+              src="https://api.leadconnectorhq.com/widget/booking/3kXYxPdQKtG4khYpF2cY" 
+              style={{ width: '100%', border: 'none', overflow: 'hidden' }} 
+              scrolling="no" 
+              id="3kXYxPdQKtG4khYpF2cY_1750954999160"
+            ></iframe>
           </div>
         </div>
       </section>
