@@ -48,6 +48,7 @@ export default function Footer({ darkMode = false }) {
               <li><Link href="/pricing" className={linkColor}>Pricing</Link></li>
               <li><Link href="/privacy" className={linkColor}>Privacy Policy</Link></li>
               <li><Link href="/terms" className={linkColor}>Terms of Service</Link></li>
+              <li><Link href="/page-two" className={linkColor}>Page Two</Link></li>
             </ul>
           </div>
         </div>
