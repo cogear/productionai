@@ -8,6 +8,14 @@ export default function PageTwo() {
       {/* Hero Section */}
       <section className="w-full text-center py-20 px-4 sm:px-6 lg:px-8 bg-gray-50">
         <div className="max-w-4xl mx-auto">
+          <div className="flex justify-center mb-8">
+            <Image
+              src="/Logo.png"
+              alt="Production AI Logo"
+              width={200}
+              height={60}
+            />
+          </div>
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight">
             Streamline Your Roofing Business: From Bid to Bill, Smarter & Faster
           </h1>
