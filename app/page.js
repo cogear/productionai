@@ -26,7 +26,8 @@ import {
   LayoutDashboard,
   CloudUpload,
   Bot,
-  BrainCircuit
+  BrainCircuit,
+  Youtube
 } from "lucide-react";
 
 export default function EnPage() {
@@ -120,6 +121,15 @@ export default function EnPage() {
               </Link>
               <Link href="/pricing" className="text-gray-700 hover:text-blue-600 font-medium text-lg transition-colors">
                 Pricing
+              </Link>
+              <Link 
+                href="https://www.youtube.com/channel/UCZbBkM2LT7YgBl0KMhBnpKA" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-gray-700 hover:text-red-600 font-medium text-lg transition-colors flex items-center gap-2"
+              >
+                <Youtube className="h-5 w-5" />
+                YouTube
               </Link>
               <Link 
                 href="https://www.higgshub.pro/en/register-contractor" 
@@ -339,6 +349,27 @@ export default function EnPage() {
                       fill
                       className="object-cover"
                       onLoad={() => logImageLoad('filemanagement')}
+                      loading="lazy"
+                      placeholder="blur"
+                      blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAf/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWEREiMxUf/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
+                    />
+                  </div>
+                </div>
+              </div>
+              
+              <div className="carousel-slide min-w-full sm:min-w-[80%] md:min-w-[50%] lg:min-w-[33.333%] p-3">
+                <div className="bg-white rounded-lg overflow-hidden shadow-md h-full">
+                  <div className="p-4 border-b border-gray-100">
+                    <h3 className="font-bold text-lg mb-1 text-indigo-600">Integrations</h3>
+                    <p className="text-gray-600 text-sm">Import jobs from AccuLynx and JobNimbus</p>
+                  </div>
+                  <div className="relative aspect-[4/3] overflow-hidden">
+                    <Image 
+                      src="/Integrations.png"
+                      alt="Integrations"
+                      fill
+                      className="object-cover"
+                      onLoad={() => logImageLoad('integrations')}
                       loading="lazy"
                       placeholder="blur"
                       blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAf/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWEREiMxUf/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACEQMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
@@ -590,8 +621,62 @@ export default function EnPage() {
         </div>
       </section>
       
-      {/* 2. Job Task Tracking */}
+      {/* 2. Integrations */}
       <section className="py-24 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="flex flex-col lg:flex-row items-center gap-16">
+            <div className="lg:w-1/2 order-2 lg:order-1">
+              <div className="inline-block bg-blue-100 text-blue-600 px-3 py-1 rounded-full text-sm font-medium mb-4">
+                SEAMLESS INTEGRATION
+              </div>
+              <h2 className="text-3xl font-bold mb-6 text-indigo-600">Import Jobs from AccuLynx and JobNimbus</h2>
+              <p className="text-gray-600 text-lg mb-6">
+                Seamlessly import your existing jobs from AccuLynx and JobNimbus. Our integration ensures a smooth transition and continuous workflow without losing any critical project data.
+              </p>
+              
+              <ul className="space-y-4 mb-8">
+                {[
+                  "One-click import from AccuLynx and JobNimbus",
+                  "Automatic data mapping and field conversion",
+                  "Import job details, contacts, and documents",
+                  "Bi-directional sync to keep data updated",
+                  "Bulk import capabilities for multiple jobs"
+                ].map((item, index) => (
+                  <li key={index} className="flex items-start">
+                    <div className="bg-green-100 text-green-600 rounded-full p-1 mr-3 mt-1">
+                      <CheckCircle2 className="h-4 w-4" />
+                    </div>
+                    <span className="text-gray-700">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            
+            <div className="lg:w-1/2 order-1 lg:order-2">
+              <div className="relative">
+                <div className="absolute -top-10 -right-10 w-72 h-72 bg-indigo-100 rounded-full blur-3xl opacity-60 -z-10"></div>
+                <div className="bg-indigo-100 p-3 rounded-xl shadow-xl border border-indigo-200">
+                  <Image 
+                    src="/Integrations.png"
+                    alt="Integrations with AccuLynx and JobNimbus"
+                    width={1200}
+                    height={800}
+                    quality={85}
+                    loading="lazy"
+                    className="rounded-lg object-contain w-full"
+                    onLoad={() => logImageLoad('feature-integrations')}
+                    placeholder="blur"
+                    blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAABAAEDASIAAhEBAxEB/8QAFQABAQAAAAAAAAAAAAAAAAAAAAf/xAAhEAACAQMDBQAAAAAAAAAAAAABAgMABAUGIWEREiMxUf/EABUBAQEAAAAAAAAAAAAAAAAAAAMF/8QAGhEAAgIDAAAAAAAAAAAAAAAAAAECEgMRkf/aAAwDAQACETMRAD8AltJagyeH0AthI5xdrLcNM91BF5pX2HaH9bcfaSXWGaRmknyJckliyjqTzSlT54b6bk+h0R//2Q=="
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      {/* 3. Job Task Tracking */}
+      <section className="py-24 bg-gray-50 bg-gradient-to-b from-white to-gray-50">
         <div className="container mx-auto px-4">
           <div className="flex flex-col lg:flex-row items-center gap-16">
             <div className="lg:w-1/2 order-2 lg:order-1">
@@ -644,8 +729,8 @@ export default function EnPage() {
         </div>
       </section>
       
-      {/* 3. Job Construction */}
-      <section className="py-24 bg-gray-50 bg-gradient-to-b from-white to-gray-50">
+      {/* 4. Job Construction */}
+      <section className="py-24 bg-white">
         <div className="container mx-auto px-4">
           <div className="flex flex-col lg:flex-row items-center gap-16">
             <div className="lg:w-1/2">
@@ -698,8 +783,8 @@ export default function EnPage() {
         </div>
       </section>
       
-      {/* 4. AI Voice Interface */}
-      <section className="py-24 bg-white">
+      {/* 5. AI Voice Interface */}
+      <section className="py-24 bg-gray-50 bg-gradient-to-b from-white to-gray-50">
         <div className="container mx-auto px-4">
           <div className="flex flex-col lg:flex-row items-center gap-16">
             <div className="lg:w-1/2 order-2 lg:order-1">
@@ -755,8 +840,8 @@ export default function EnPage() {
         </div>
       </section>
       
-      {/* 5. Job Photo Organization */}
-      <section className="py-24 bg-gray-50 bg-gradient-to-b from-white to-gray-50">
+      {/* 6. Job Photo Organization */}
+      <section className="py-24 bg-white">
         <div className="container mx-auto px-4">
           <div className="flex flex-col lg:flex-row items-center gap-16">
             <div className="lg:w-1/2">
@@ -809,8 +894,8 @@ export default function EnPage() {
         </div>
       </section>
 
-      {/* 6. Contract and Form Generation */}
-      <section className="py-24 bg-white">
+      {/* 7. Contract and Form Generation */}
+      <section className="py-24 bg-gray-50 bg-gradient-to-b from-white to-gray-50">
         <div className="container mx-auto px-4">
           <div className="flex flex-col lg:flex-row items-center gap-16">
             <div className="lg:w-1/2 order-2 lg:order-1">
@@ -863,8 +948,8 @@ export default function EnPage() {
         </div>
       </section>
       
-      {/* 7. Team Coordination */}
-      <section className="py-24 bg-gray-50 bg-gradient-to-b from-white to-gray-50">
+      {/* 8. Team Coordination */}
+      <section className="py-24 bg-white">
         <div className="container mx-auto px-4">
           <div className="flex flex-col lg:flex-row items-center gap-16">
             <div className="lg:w-1/2">
@@ -917,8 +1002,8 @@ export default function EnPage() {
         </div>
       </section>
       
-      {/* 8. File Management */}
-      <section className="py-24 bg-white">
+      {/* 9. File Management */}
+      <section className="py-24 bg-gray-50 bg-gradient-to-b from-white to-gray-50">
         <div className="container mx-auto px-4">
           <div className="flex flex-col lg:flex-row items-center gap-16">
             <div className="lg:w-1/2 order-2 lg:order-1">
@@ -998,6 +1083,36 @@ export default function EnPage() {
                 className="bg-indigo-700 text-white px-6 py-3 rounded-lg font-medium text-lg w-full sm:w-auto flex items-center justify-center hover:bg-indigo-800 transition-colors shadow-lg"
               >
                 Request Demo
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Integration Partners */}
+      <section className="py-8 bg-gray-100 border-t border-gray-200">
+        <div className="container mx-auto px-4">
+          <div className="text-center">
+            <p className="text-sm text-gray-600 mb-4">
+              Seamlessly integrates with leading construction management platforms:
+            </p>
+            <div className="flex justify-center items-center gap-8">
+              <Link 
+                href="https://www.acculynx.com" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-blue-600 hover:text-blue-800 font-medium text-sm transition-colors"
+              >
+                AccuLynx
+              </Link>
+              <span className="text-gray-400">•</span>
+              <Link 
+                href="https://www.jobnimbus.com" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-blue-600 hover:text-blue-800 font-medium text-sm transition-colors"
+              >
+                JobNimbus
               </Link>
             </div>
           </div>
