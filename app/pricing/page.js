@@ -117,7 +117,7 @@ export default function PricingPage() {
                 <ul className="space-y-4">
                   {[
                     "5 job credits",
-                    "Credits never expire",
+                    "Credits good for 30 days",
                     "Full access to all features",
                     "Priority support",
                     "Residential only"
@@ -155,7 +155,7 @@ export default function PricingPage() {
                 <ul className="space-y-4">
                   {[
                     "10 job credits",
-                    "Credits never expire",
+                    "Credits good for 30 days",
                     "Full access to all features",
                     "Priority support",
                     "Residential only"
@@ -190,7 +190,7 @@ export default function PricingPage() {
                 <ul className="space-y-4">
                   {[
                     "20 job credits",
-                    "Credits never expire",
+                    "Credits good for 30 days",
                     "Full access to all features",
                     "Priority support",
                     "Residential only"
@@ -247,7 +247,7 @@ export default function PricingPage() {
               },
               {
                 q: "Do job credits expire?",
-                a: "No, job credits never expire! Purchase a package and use your credits whenever you need them."
+                a: "Job credits are good for 30 days from the date of purchase. Use your credits within this time period."
               },
               {
                 q: "What's included in 'full access to all features'?",
