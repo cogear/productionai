@@ -122,6 +122,9 @@ export default function EnPage() {
               <Link href="/pricing" className="text-gray-700 hover:text-blue-600 font-medium text-lg transition-colors">
                 Pricing
               </Link>
+              <Link href="/how-it-works" className="text-gray-700 hover:text-blue-600 font-medium text-lg transition-colors">
+                How it Works
+              </Link>
               <Link 
                 href="https://www.youtube.com/channel/UCZbBkM2LT7YgBl0KMhBnpKA" 
                 target="_blank" 
