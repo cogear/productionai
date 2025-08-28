@@ -4,23 +4,9 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowLeft } from "lucide-react";
 import Footer from "@/app/shared/Footer";
-import { useEffect } from 'react';
+// Removed useEffect import as it's no longer needed
 
 export default function DemoPage() {
-  useEffect(() => {
-    const script = document.createElement('script');
-    script.src = 'https://api.leadconnectorhq.com/js/form_embed.js';
-    script.type = 'text/javascript';
-    document.body.appendChild(script);
-
-    return () => {
-      // Find the script and remove it
-      const scriptElement = document.querySelector('script[src="https://api.leadconnectorhq.com/js/form_embed.js"]');
-      if (scriptElement && document.body.contains(scriptElement)) {
-        document.body.removeChild(scriptElement);
-      }
-    };
-  }, []);
 
   return (
     <div className="font-sans overflow-x-hidden">
@@ -72,12 +58,13 @@ export default function DemoPage() {
       <section className="py-12 bg-gray-50">
         <div className="container mx-auto px-4">
           <div className="max-w-5xl mx-auto">
-            <iframe 
-              src="https://api.leadconnectorhq.com/widget/booking/3kXYxPdQKtG4khYpF2cY" 
-              style={{ width: '100%', border: 'none', overflow: 'hidden' }} 
-              scrolling="no" 
-              id="3kXYxPdQKtG4khYpF2cY_1750954999160"
-            ></iframe>
+            {/* Replace the URL below with your actual Calendly scheduling link */}
+            <div 
+              className="calendly-inline-widget" 
+              data-url="https://calendly.com/nathan-higgs/new-meeting-1" 
+              style={{ minWidth: '320px', height: '630px' }}
+            ></div>
+            <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
           </div>
         </div>
       </section>
