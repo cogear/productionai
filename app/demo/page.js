@@ -61,7 +61,7 @@ export default function DemoPage() {
             {/* Replace the URL below with your actual Calendly scheduling link */}
             <div 
               className="calendly-inline-widget" 
-              data-url="https://calendly.com/nathan-higgs/new-meeting-1" 
+              data-url="https://calendly.com/nathan-higgs/new_production_ai_demo" 
               style={{ minWidth: '320px', height: '630px' }}
             ></div>
             <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
