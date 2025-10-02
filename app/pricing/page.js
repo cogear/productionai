@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import Footer from "@/app/shared/Footer";
+import PricingFAQSchema from "@/components/PricingFAQSchema";
 import { CheckCircle2, XCircle } from "lucide-react";
 import { trackSignUpClick, trackPricingView } from '@/utils/metaPixelEvents';
 import { useEffect } from 'react';
@@ -14,6 +15,7 @@ export default function PricingPage() {
   
   return (
     <div className="font-sans overflow-x-hidden">
+      <PricingFAQSchema />
       {/* Sticky Header */}
       <header className="sticky top-0 z-50 bg-white backdrop-blur-md shadow-sm border-b border-gray-200">
         <div className="container mx-auto px-4">

@@ -1,11 +1,5 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Disable the Next.js development overlay/indicators
-  devIndicators: {
-    buildActivity: false,
-    buildActivityPosition: 'bottom-right',
-  },
-  
   // Disable React StrictMode to prevent double rendering
   reactStrictMode: false,
   

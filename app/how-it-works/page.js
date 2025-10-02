@@ -5,11 +5,12 @@ import Image from "next/image";
 import { useRouter } from 'next/navigation';
 import React from 'react';
 import Footer from "@/app/shared/Footer";
-import { 
-  ArrowRight, 
-  HardHat, 
-  Briefcase, 
-  Calendar, 
+import VideoSchema from "@/components/VideoSchema";
+import {
+  ArrowRight,
+  HardHat,
+  Briefcase,
+  Calendar,
   Youtube,
   Play,
   CheckCircle2
@@ -47,6 +48,7 @@ export default function HowItWorksPage() {
 
   return (
     <div className="bg-[#0a0a0a] min-h-screen text-white">
+      <VideoSchema />
       {/* Sticky Header */}
       <header className="sticky top-0 z-50 bg-[#0a0a0a]/80 backdrop-blur-xl border-b border-gray-800/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
