@@ -49,6 +49,18 @@ export default function PricingPage() {
         </div>
       </header>
 
+      {/* Free Until 2026 Banner */}
+      <div className="bg-gradient-to-r from-green-500 via-emerald-500 to-teal-500 text-white py-4 px-4">
+        <div className="container mx-auto text-center">
+          <p className="text-2xl md:text-3xl font-bold animate-pulse">
+            🎉 FREE UNTIL 2026 🎉
+          </p>
+          <p className="text-sm md:text-base mt-1 font-medium">
+            Get started today at no cost - completely free through December 31st, 2025!
+          </p>
+        </div>
+      </div>
+
       {/* Hero Section */}
       <section className="py-20 bg-gradient-to-br from-blue-600 via-blue-500 to-indigo-600 text-white">
         <div className="container mx-auto px-4 text-center">
